@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Book</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Add New Book</h1>
+    <form id="add-book-form">
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" required>
+        </div>
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" id="author" required>
+        </div>
+        <div>
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" required>
+        </div>
+        <div>
+            <label for="genre">Genre:</label>
+            <input type="text" id="genre" required>
+        </div>
+        <div>
+            <label for="count">Count:</label>
+            <input type="text" id="count" required>
+        </div>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <script>
+        // Function to handle form submission
+        document.getElementById('add-book-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form input values
+            const title = document.getElementById('title').value;
+            const author = document.getElementById('author').value;
+            const isbn = document.getElementById('isbn').value;
+            const genre = document.getElementById('genre').value;
+            var count = parseInt(document.getElementById('count').value); 
+    
+            console.log('Current count:', count); // Log the current count
+    
+            var existingBooks = JSON.parse(localStorage.getItem('libraryCatalog')) || [];
+            var existingBook = existingBooks.find(book => book.isbn === isbn);
+    
+            if (existingBook) {
+                // If the book already exists, increment its count
+                existingBook.count += count;
+                console.log('Existing book count after increment:', existingBook.count); // Log the count after increment
+            } else {
+                // Create a book object
+                const book = {
+                    title: title,
+                    author: author,
+                    isbn: isbn,
+                    genre: genre,
+                    count: count,
+                    availability:true
+                };
+                existingBooks.push(book);
+            }
+    
+            // Save the updated array of books to local storage
+            localStorage.setItem('libraryCatalog', JSON.stringify(existingBooks));
+    
+            // Redirect back to the index page
+            window.location.href = 'index.html';
+        });
+    </script>
+    
+    
+</body>
+</html>

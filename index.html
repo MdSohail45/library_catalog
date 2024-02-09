@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Catalog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Library Catalog</h1>
+        <!-- Search Bar -->
+        <div class="search-container">
+            
+            <select id="search-type">
+                <option value="title">Title</option>
+                <option value="author">Author</option>
+                <option value="isbn">ISBN</option>
+                <option value="genre">Genre</option>
+            </select>
+            <input type="text" id="search" placeholder="Search...">
+            <button id="search-btn">Search</button>
+            <button onclick="window.location.href='addbook.html'" class="btn">Add Books</button>
+        </div>
+
+        <!-- Search Results -->
+        <div id="search-results" class="search-results"></div>
+
+        <!-- Catalog View -->
+        <div id="book-list" class="book-grid"></div>
+
+        <!-- Add Book Button -->
+        <button onclick="window.location.href='addbook.html'" class="btn">Add Books</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
